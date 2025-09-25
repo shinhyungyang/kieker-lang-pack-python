@@ -19,16 +19,19 @@ class InstrumentOnImportFinder(MetaPathFinder):
     '''
     This class is a custom implementation of a MetaPathFinder.
     It is used to find specs for     '''    
-    def __init__(self, ignore_list=[], empty = False, debug_on=False):
+    def __init__(self, ignore_list=[], empty = False, debug_on=False, path=""):
         self.debug_on = debug_on
         self.ignore_list = ignore_list
         self.empty = empty
+        self.path = path
         
     def find_spec(self, fullname, path, target=None):
         
         name = fullname.split(".")[-1]
         
-        if path is None or path == "":
+        if self.path != None and self.path != "":
+            path = self.path
+        elif path is None or path == "":
             path = [os.getcwd()] 
     
         

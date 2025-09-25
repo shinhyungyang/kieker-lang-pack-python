@@ -29,7 +29,7 @@ class InstrumentOnImportFinder(MetaPathFinder):
         
         name = fullname.split(".")[-1]
         
-        if self.path != None and self.path != "":
+        if isinstance(self.path, str):
             path = [self.path]
         elif path is None or path == "":
             path = [os.getcwd()] 
